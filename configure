@@ -1,0 +1,69 @@
+#!/bin/bash
+# vim: ft=sh noet ts=4 sw=4 sts=0
+
+main()
+{
+	local OBJS=""
+	local CCFLAGS="-std=gnu11"
+	echo "# vim: ft=make noet ts=4 sw=4 sts=0" > makefile
+	gen
+	gen "CC = gcc"
+	gen "AR = ar"
+	gen "CCFLAGS = -march=native -Ofast -Wall $CCFLAGS"
+	gen
+	gen ".PHONY: libcrude clean cleanall rebuild reconf test commit"
+	gen
+	gen "libcrude: build build/include build/libcrude.a"
+	gen "clean:"
+	gen -e "\trm -rf build"
+	gen "cleanall: clean"
+	gen -e "\trm -f makefile"
+	gen "rebuild: clean libcrude"
+	gen "reconf:"
+	gen -e "\t./configure"
+	gen "test: crude-test"
+	gen -e "\t./build/crude-test"
+	gen "commit: cleanall"
+	gen -e "\tgit add ."
+	gen -e "\tgit commit -a || true"
+	gen -e "\t./configure"
+	gen
+	gen "build:"
+	gen -e "\tmkdir build"
+	gen -e "\tmkdir build/objects"
+	gen "build/include: " src/*.h
+	gen -e "\tmkdir build/include"
+	gen -e "\tcp \$^ build/include"
+
+	for f in src/*.c; do
+		echo -e "\e[0;32mprocessing \e[1;35m$f\e[m"
+		echo -ne "\e[1;31m"
+		gcc $CCFLAGS -MM "$f" > .dep || error
+		local target=build/objects/$(cut -d: -f1 .dep | head -n 1)
+		OBJS="$OBJS $target";
+		gen -n "build/objects/"
+		cat .dep >> makefile
+		gen -e "\t\$(CC) -c -o \$@ \$< \$(CCFLAGS)"
+	done
+	echo -ne "\e[m"
+	rm -f .dep
+	gen "build/libcrude.a:$OBJS"
+	gen -e "\t\$(AR) rcs \$@ \$^"
+	gen
+}
+
+gen()
+{
+	echo $* >> makefile
+}
+
+error()
+{
+	echo -ne "\e[m"
+	rm -f .dep
+	exit 1
+}
+
+
+main $*
+
