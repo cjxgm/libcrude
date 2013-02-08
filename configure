@@ -13,7 +13,8 @@ main()
 	gen
 	gen ".PHONY: libcrude clean cleanall rebuild reconf test commit"
 	gen
-	gen "libcrude: build build/include build/libcrude.a"
+	gen "libcrude: build build/objects build/include \\"
+	gen "		build/includes build/libcrude.a"
 	gen "clean:"
 	gen -e "\trm -rf build"
 	gen "cleanall: clean"
@@ -30,9 +31,11 @@ main()
 	gen
 	gen "build:"
 	gen -e "\tmkdir build"
+	gen "build/objects:"
 	gen -e "\tmkdir build/objects"
-	gen "build/include: " src/*.h
+	gen "build/include:"
 	gen -e "\tmkdir build/include"
+	gen "build/includes: " src/*.h
 	gen -e "\tcp \$^ build/include"
 
 	for f in src/*.c; do
