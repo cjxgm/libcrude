@@ -15,7 +15,11 @@
 	typeof($what) $var = $what
 
 // simpler malloc
-#define CREATE($type, $var, $expr...) \
+#define new($type, $expr...) \
+	malloc(sizeof($type) $expr)
+
+// simpler malloc
+#define create($type, $var, $expr...) \
 	$type * $var = malloc(sizeof($type) $expr)
 
 

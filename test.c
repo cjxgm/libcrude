@@ -6,7 +6,7 @@ int main()
 {
 	Pack * p = pack_new();
 	while (1) {
-		CREATE(int, n);
+		create(int, n);
 		scanf("%d", n);
 		if (*n == 0) break;
 		pack_add_tail(p, n);

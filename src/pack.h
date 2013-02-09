@@ -34,13 +34,13 @@ PackElement;
 #define pack_delete($pack_element)	list_delete((List *)($pack_element))
 
 #define pack_add_tail($pack, $data)	({ \
-	CREATE(PackElement, __$pe); \
+	create(PackElement, __$pe); \
 	__$pe->data = ($data); \
 	list_add_tail((List *)($pack), __$pe); \
 })
 
 #define pack_add_head($pack, $data)	({ \
-	CREATE(PackElement, __$pe); \
+	create(PackElement, __$pe); \
 	__$pe->data = ($data); \
 	list_add_head((List *)($pack), __$pe); \
 })

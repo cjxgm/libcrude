@@ -4,7 +4,7 @@
 
 List * list_new()
 {
-	CREATE(List, list);
+	create(List, list);
 	list_init(list);
 	return list;
 }

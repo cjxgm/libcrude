@@ -37,6 +37,7 @@ main()
 	gen -e "\tmkdir build/include"
 	gen "build/includes: " src/*.h
 	gen -e "\tcp \$^ build/include"
+	gen -e "\tsed -i 's/inline/\\\\t/g' build/include/*"
 
 	for f in src/*.c; do
 		echo -e "\e[0;32mprocessing \e[1;35m$f\e[m"
