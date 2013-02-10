@@ -8,7 +8,7 @@
 
 // anonymous/lambda function
 #define $($ret_type, $definition...) \
-	({ $ret_type $lambda_function$ $definition &$lambda_function; })
+	({ $ret_type $lambda_function$ $definition &$lambda_function$; })
 
 // act like the "auto" keyword in c++11
 #define $_($var, $what...) \
