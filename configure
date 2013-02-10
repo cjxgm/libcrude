@@ -26,7 +26,7 @@ main()
 	gen -e "\t./build/crude-test"
 	gen "commit: cleanall"
 	gen -e "\tgit add ."
-	gen -e "\tgit commit -a || true"
+	gen -e "\tenv LANG=C git commit -a || true"
 	gen -e "\t./configure"
 	gen
 	gen "build:"
