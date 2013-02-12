@@ -22,6 +22,10 @@
 #define create($type, $var, $expr...) \
 	$type * $var = malloc(sizeof($type) $expr)
 
+// calculate fixed-sized array length
+#define array_length($array) \
+	(sizeof($array) / sizeof(*($array)))
+
 
 // boolean
 typedef unsigned char bool;
