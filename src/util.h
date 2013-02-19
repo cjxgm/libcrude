@@ -14,12 +14,27 @@
 #define $_($var, $what...) \
 	typeof($what) $var = $what
 
+// object function call
+#define $$($object, $func, $args...) ({ \
+	$_($object$, $object); \
+	$_($func$, $func); \
+	$object$->$func$($object$, $args); \
+})
+
 // simpler malloc
 #define new($type, $expr...) \
 	malloc(sizeof($type) $expr)
 
 // simpler malloc
 #define create($type, $var, $expr...) \
+	$type * $var = malloc(sizeof($type) $expr)
+
+// simpler valloc
+#define vnew($type, $expr...) \
+	malloc(sizeof($type) $expr)
+
+// simpler valloc
+#define vcreate($type, $var, $expr...) \
 	$type * $var = malloc(sizeof($type) $expr)
 
 // calculate fixed-sized array length
