@@ -55,7 +55,7 @@ main()
 	gen "build/libcrude.a:$OBJS"
 	gen -e "\t\$(AR) rcs \$@ \$^"
 	gen "build/crude-test: test.c build/libcrude.a build/includes"
-	gen -e "\t\$(CC) -o \$@ \$< -Ibuild/include -Lbuild -lcrude"
+	gen -e "\t\$(CC) -o \$@ \$< \$(CCFLAGS) -Ibuild/include -Lbuild -lcrude"
 	gen
 }
 

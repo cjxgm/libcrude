@@ -11,7 +11,7 @@ typedef List Pack;
 
 typedef struct PackElement
 {
-	LISTABLE(struct PackElement);
+	LISTABLE;
 	void * data;
 }
 PackElement;
@@ -21,9 +21,9 @@ PackElement;
 	list_walk((List *)($pack), PackElement, $var, $block)
 
 #define pack_walk($pack, $type, $var, $block...) \
-	pack_walk_element($pack, __$pe, { \
-		$type * $var = ($type *)__$pe->data; \
-		$block \
+	pack_walk_element($pack, $pe$, { \
+		$type * $var = ($type *)$pe$->data; \
+		$block; \
 	})
 
 
@@ -34,15 +34,15 @@ PackElement;
 #define pack_delete($pack_element)	list_delete((List *)($pack_element))
 
 #define pack_add_tail($pack, $data)	({ \
-	create(PackElement, __$pe); \
-	__$pe->data = ($data); \
-	list_add_tail((List *)($pack), __$pe); \
+	create(PackElement, $pe$); \
+	$pe$->data = ($data); \
+	list_add_tail((List *)($pack), $pe$); \
 })
 
 #define pack_add_head($pack, $data)	({ \
-	create(PackElement, __$pe); \
-	__$pe->data = ($data); \
-	list_add_head((List *)($pack), __$pe); \
+	create(PackElement, $pe$); \
+	$pe$->data = ($data); \
+	list_add_head((List *)($pack), $pe$); \
 })
 
 

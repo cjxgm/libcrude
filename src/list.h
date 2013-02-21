@@ -6,16 +6,15 @@
 #include <stddef.h>
 
 
-#define LISTABLE($TYPE)	\
-	$TYPE * prev; \
-	$TYPE * next
+#define LISTABLE \
+	List * prev; \
+	List * next
 
 
 #define list_walk($list, $type, $var, $block...) ({ \
-	$type * __$  = ($type *)($list); \
-	$type * $var = __$; \
-	while (($var = $var->next) != __$) \
-		$block \
+	for ($type * __$ = (void *)($list), * $var = (void *)__$->next; \
+			$var != __$; $var = (void *)$var->next) \
+		$block; \
 })
 
 
@@ -25,11 +24,11 @@
 #define list_tail($list, $type)			(($type *)list_prev($list))
 
 
-typedef struct List
+typedef struct List List;	// so that LISTABLE can be used
+struct List
 {
-	LISTABLE(struct List);
-}
-List;
+	LISTABLE;
+};
 
 
 		List * list_new();

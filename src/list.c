@@ -31,7 +31,7 @@ inline void list_add_head(List * list, void * data)
 size_t list_length(List * list)
 {
 	size_t len = 0;
-	list_walk(list, List, p, len++;);
+	list_walk(list, List, p, len++);
 	return len;
 }
 
