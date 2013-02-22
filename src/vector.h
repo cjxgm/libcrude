@@ -19,6 +19,10 @@
 typedef float vec __attribute__((vector_size(sizeof(float)*4)));
 #define v3($x, $y, $z)			((vec){($x), ($y), ($z)})
 #define v4($x, $y, $z, $w)		((vec){($x), ($y), ($z), ($w)})
+#define vspread($x)	({ \
+	$_($x$, ($x)); \
+	(vec){$x$, $x$, $x$, $x$}; \
+})
 
 float vdot(vec a, vec b);
 #define vsqr($a) ({ \
