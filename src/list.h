@@ -32,6 +32,7 @@ struct List
 
 
 		List * list_new();
+		void list_free(List * list);
 inline	void list_init(List * list);
 		void list_add_tail(List * list, void * data);
 inline	void list_add_head(List * list, void * data);

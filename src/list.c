@@ -9,6 +9,13 @@ List * list_new()
 	return list;
 }
 
+void list_free(List * list)
+{
+	while (list_next(list) != list)
+		list_delete(list_next(list));
+	free(list);
+}
+
 inline void list_init(List * list)
 {
 	list->prev = list->next = list;
