@@ -32,6 +32,10 @@ PackElement;
 #define pack_length($pack)			list_length((List *)($pack))
 #define pack_remove($pack_element)	list_remove((List *)($pack_element))
 #define pack_delete($pack_element)	list_delete((List *)($pack_element))
+#define pack_delete_me()			({ \
+	$pe$ = list_prev($pe$); \
+	list_delete(list_next($pe$)); \
+})
 
 #define pack_add_tail($pack, $data)	({ \
 	create(PackElement, $pe$); \
