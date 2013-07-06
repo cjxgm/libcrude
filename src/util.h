@@ -41,6 +41,20 @@
 #define array_length($array) \
 	(sizeof($array) / sizeof(*($array)))
 
+// macro concatenate
+#define mcat($x, $y) \
+	$x ## $y
+
+// macro implicit concatenate
+#define micat($x, $y) \
+	mcat($x, $y)
+
+// declare a variable unused
+#define UNUSED		__attribute__((__unused__))
+
+// skip a parameter of a function in declaration
+#define SKIP		void * micat(__unused, __COUNTER__) UNUSED
+
 
 // boolean
 typedef unsigned char bool;
