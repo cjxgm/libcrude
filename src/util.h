@@ -55,6 +55,9 @@
 // skip a parameter of a function in declaration
 #define SKIP		void * micat(__unused, __COUNTER__) UNUSED
 
+// cast to (void *)
+#define ANY			(void *)
+
 
 // boolean
 typedef unsigned char bool;
