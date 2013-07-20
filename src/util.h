@@ -1,7 +1,6 @@
 // vim: noet ts=4 sw=4 sts=0
 // un-categorized utility macros, functions, etc...
-#ifndef __CRUDE$UTIL__
-#define __CRUDE$UTIL__
+#pragma once
 
 #include <stdlib.h>
 
@@ -63,6 +62,4 @@
 typedef unsigned char bool;
 #define true	1
 #define false	0
-
-#endif
 

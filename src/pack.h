@@ -1,7 +1,6 @@
 // vim: noet ts=4 sw=4 sts=0
 // pack(anything-container) manipulation
-#ifndef __CRUDE$PACK__
-#define __CRUDE$PACK__
+#pragma once
 
 #include "list.h"
 #include "util.h"
@@ -49,7 +48,4 @@ PackElement;
 	$pe$->data = ($data); \
 	list_add_head((List *)($pack), $pe$); \
 })
-
-
-#endif
 

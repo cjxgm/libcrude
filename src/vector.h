@@ -1,7 +1,6 @@
 // vim: noet ts=4 sw=4 sts=0
 // mathematical vector manipulation
-#ifndef __CRUDE$VECTOR__
-#define __CRUDE$VECTOR__
+#pragma once
 
 #include <math.h>
 #include "util.h"
@@ -36,6 +35,4 @@ float vdot(vec a, vec b);
 })
 
 vec vcross(vec a, vec b);
-
-#endif
 
