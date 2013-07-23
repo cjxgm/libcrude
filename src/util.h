@@ -28,6 +28,14 @@
 #define create($type, $var, $expr...) \
 	$type * $var = malloc(sizeof($type) $expr)
 
+// simpler calloc
+#define new0($type, $expr...) \
+	calloc(sizeof($type) $expr, 1)
+
+// simpler calloc
+#define create0($type, $var, $expr...) \
+	$type * $var = calloc(sizeof($type) $expr, 1)
+
 // simpler valloc
 #define vnew($type, $expr...) \
 	malloc(sizeof($type) $expr)
