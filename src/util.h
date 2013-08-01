@@ -69,7 +69,7 @@
 #define CONSTRUCTOR	__attribute__((constructor))
 
 // cause the function to be called after main() or exit()
-#define DESRTUCTOR	__attribute__((destructor))
+#define DESTRUCTOR	__attribute__((destructor))
 
 // mark as desprecated
 #define DESPRECATED	__attribute__((desprecated))
